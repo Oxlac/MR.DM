@@ -1,0 +1,41 @@
+#:kivy 2.0.0
+
+<ProgressScreen>:
+    BoxLayout
+        orientation: "vertical"
+        padding: dp(15)
+        FloatLayout:
+            orientation: "horizontal"
+            size_hint_y: .15
+
+            Label:
+                text: "Message Progress"
+                font_size: "22sp"
+                bold: True
+                pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+                size_hint:None,None
+                size: self.texture_size
+                color: 1,1,1,1
+
+        BoxLayout:
+            id: table_container
+            size_hint: 1,.75
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        RelativeLayout:
+            size_hint_y: .1
+            MDRectangleFlatButton:
+                id: Remove
+                text: "Remove from queue"
+                pos_hint: {"left": 0, "center_y": 0.5}
+                disabled: True
+                on_release: root.confirm_remove()
+
+            MDRectangleFlatButton:
+                id: cancel
+                text: "Cancel"
+                pos_hint: {"right": 1, "center_y": 0.5}
+                theme_text_color: "Custom"
+                text_color: "red"
+                line_color: "red"
+                on_release: root.confirm_stop()

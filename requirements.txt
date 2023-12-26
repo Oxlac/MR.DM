@@ -1,0 +1,5 @@
+instaloader==4.10.2
+Kivy==2.2.1
+selenium==4.16.0
+plyer==2.1.0
+-e git+https://github.com/kivymd/KivyMD.git@master#egg=kivymd

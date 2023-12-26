@@ -1,0 +1,58 @@
+#:kivy 2.0.0
+
+<AccountSelectScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(15)
+        FloatLayout:
+            orientation: "horizontal"
+            size_hint_y: .15
+
+            MDIconButton:
+                id: menu
+                icon: "menu"
+                pos_hint: {"left": 1, "center_y": 0.5}
+                on_release: root.show_mainmenu()
+
+            Label:
+                text: "Account Selection"
+                font_size: "22sp"
+                bold: True
+                pos_hint: {"center_x":0.5 ,"center_y": 0.5}
+                size_hint:None,None
+                size: self.texture_size
+                color: 1,1,1,1
+
+            AccountProgress:
+                id: progress
+                pos_hint: {"right": .9, "center_y": 0.5}  
+                
+            MDFloatingActionButton:
+                id: addbutton
+                icon: "account-multiple-plus"
+                pos_hint: {"right": 1, "center_y": 0.5}
+                on_release: root.show_add_menu()
+
+        BoxLayout:
+            id: tablecontainer
+            size_hint: 1,.75
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        RelativeLayout:
+            size_hint_y: .1
+            MDRectangleFlatButton:
+                id: Delete
+                text: "Delete Selected"
+                theme_text_color: "Custom"
+                text_color: "red"
+                line_color: "red"
+                pos_hint: {"left": 0, "center_y": 0.5}
+                on_release: root.verify_delete()
+
+            MDRaisedButton:
+                id: next
+                text: "Next"
+                pos_hint: {"right": 1, "center_y": 0.5}
+                on_release: root.navigate_to_message()          
+
+        

@@ -1,0 +1,57 @@
+#:kivy 2.0.0
+<MessageScreen>:
+
+    BoxLayout:
+        orientation:"vertical"
+        spacing: "10dp"
+        padding: "20dp"
+
+        BoxLayout:
+            orientation:"horizontal"
+            size_hint_y:.1
+
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                on_release: root.back()
+
+            MDLabel:
+                text: "Create Messages to Send"
+                font_size: "26sp"
+                bold: True
+                valign: "center"
+
+        MDCard:
+            orientation: "vertical"
+            size_hint: 1, .8
+            pos_hint: {"center_x": .5, "center_y": .6}
+            spacing: "8dp"
+
+            ScrollView:
+                BoxLayout:
+                    id: message_container
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: "10dp", "30dp", "10dp", "30dp"
+                    spacing: "20dp"
+
+                    TextMessage:
+
+
+        FloatLayout:
+            orientation:"horizontal"
+            size_hint_y:.1
+
+            MDRaisedButton:
+                text: "Send Messages"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                on_release: root.confirm_send()
+                disabled: True if len(root.ids.message_container.children) == 0 else False
+  
+            MDFloatingActionButton:
+                id: add_message
+                icon: "plus"
+                pos_hint: {"right":1, "center_y": .5}
+                on_release: root.check_if_can_add()
+

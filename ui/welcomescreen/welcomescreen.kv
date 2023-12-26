@@ -1,0 +1,76 @@
+#:kivy 2.0.0
+<WelcomeScreen>:
+    MDLabel:
+        text: "Welcome to Insta Auto Messenger"
+        font_size: 32
+        pos_hint: {"center_y": 0.85}
+        halign: "center"
+    MDLabel:
+        text: "This tool is intended for Instagram Marketing purposes only."
+        font_size: 14
+        pos_hint: {"center_y": 0.8}
+        halign: "center"
+    MDLabel:
+        text: "Choose an account to login with:"
+        font_size: 14
+        pos_hint: {"center_y": 0.75}
+        halign: "center"
+
+    MDCard:
+        canvas:
+            Color:
+                rgba: 0.2,0.2,0.2,1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: 20,20,20,20
+            Color:
+                rgba: 0,0,0,1
+            RoundedRectangle:
+                pos: self.pos[0]+2, self.pos[1]+2
+                size: self.size[0]-4, self.size[1]-4
+                radius: 20,20,20,20
+        size_hint: .4, .45
+        pos_hint: {"center_y": 0.45, "center_x": 0.5}
+        padding: "10dp", "10dp", "10dp", "10dp"
+
+        ScrollView:
+            do_scroll_x: False
+            disabled: True if root.processing else False
+            GridLayout:
+                id:users_container
+                cols: 1
+                size_hint_y: None
+                spacing: "15dp"
+
+                MDLabel:
+                    text: "No accounts added yet."
+                    font_size: 16
+                    halign: "center"
+                    valign: "center"
+                    size_hint_y: 1
+
+    MDRectangleFlatButton:
+        text: "Add Account"
+        pos_hint: {"center_y": 0.1, "center_x": 0.5}
+        on_release: root.add_account()
+        disabled: True if root.processing else False
+
+    FloatLayout:
+        canvas.after:
+            Color:
+                rgba: 0.2,0.2,0.2,.5
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        text: "Login"
+        pos_hint: {"center_y": 0.5, "center_x": 0.5}
+        opacity: 1 if root.processing else 0
+
+        MDSpinner:
+            size_hint: None, None
+            size: dp(46), dp(46)
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            active: True if root.processing else False
+
+        
