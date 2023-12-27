@@ -20,7 +20,7 @@
   <p align="center">
     A quick and easy tool for automating your Instagram DMs.
     <br />
-    <a href="www.mrdm.oxlac.com"><strong>Visit the Website »</strong></a>
+    <a href="mr-dm.oxlac.com"><strong>Visit the Website »</strong></a>
     <br />
     <br />
     <a href="https://www.youtube.com/watch?v=uluL4279G2A">View Demo</a>
@@ -61,7 +61,7 @@
 
 ## About The Project
 
-[![MR.DM Screen Shot][product-screenshot]](https://www.mrdm.oxlac.com)
+[![MR.DM Screen Shot][product-screenshot]](https://mr-dm.oxlac.com)
 
 MR.DM is a tool for automating your Instagram DMs. Sending marketing messages about your newly launched products to your followers is a tiring process to accomplish manually. MR.DM can solve all of that in just 3 simple steps.
 
