@@ -20,7 +20,7 @@
   <p align="center">
     A quick and easy tool for automating your Instagram DMs.
     <br />
-    <a href="mrdm.oxlac.com"><strong>Vist the Website »</strong></a>
+    <a href="mrdm.oxlac.com"><strong>Visit the Website »</strong></a>
     <br />
     <br />
     <a href="https://www.youtube.com/watch?v=uluL4279G2A">View Demo</a>
