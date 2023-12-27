@@ -20,7 +20,7 @@
   <p align="center">
     A quick and easy tool for automating your Instagram DMs.
     <br />
-    <a href="mrdm.oxlac.com"><strong>Visit the Website »</strong></a>
+    <a href="www.mrdm.oxlac.com"><strong>Visit the Website »</strong></a>
     <br />
     <br />
     <a href="https://www.youtube.com/watch?v=uluL4279G2A">View Demo</a>
@@ -61,9 +61,9 @@
 
 ## About The Project
 
-[![MR.DM Screen Shot][product-screenshot]](https://mrdm.oxlac.com)
+[![MR.DM Screen Shot][product-screenshot]](https://www.mrdm.oxlac.com)
 
-MR.DM is a tool for automating your Instagram DMs. Sending marketing messages about your newly launched products to your followers is a tiring proces to accomplish manually. MR.DM can sole all of that in just 3 simple steps.
+MR.DM is a tool for automating your Instagram DMs. Sending marketing messages about your newly launched products to your followers is a tiring process to accomplish manually. MR.DM can solve all of that in just 3 simple steps.
 
 1. Login to your Instagram account.
 2. Load the Accounts you want to send the message to from various sources.
@@ -79,9 +79,9 @@ MR.DM will take care of the rest. It will send the message to all the accounts y
 * Multiple accounts support.
 * Load target accounts from followers, following, hashtag(coming soon)
 * Manually add accounts to send messages to.
-* Eport and import target accounts as CSV files.
+* Export and import target accounts as CSV files.
 * Send multiple messages to the same account.
-* Send Links, posts and normal text messages.
+* Send Links, posts, and normal text messages.
 * Send pictures and videos(coming soon)
 * Monitor the progress of the messages being sent.
 
@@ -98,7 +98,7 @@ MR.DM will take care of the rest. It will send the message to all the accounts y
 
 ## Getting Started
 
-MR.DM is a desktop application. It is available for Windows, Linux and Mac. You can download the latest executable version from [github releases](https://github.com/oxlac/mr.dm/releases). Or you can build it from source
+MR.DM is a desktop application. It is available for Windows, Linux, and Mac. You can download the latest executable version from [github releases](https://github.com/oxlac/mr.dm/releases). Or you can build it from the source
 with the following instructions.
 
 
@@ -140,7 +140,7 @@ MR.DM can be used for sending out messages to thousands of your followers and al
 
 ![Send Message Screen][send-message-screenshot]
 
-You can view the status of the messages being sent in the progress screen. MR.DM uses selenium to automate the process of sending messages. So you can use your computer while the messages are being sent. But please do not close the browser window that opens up. You can minimize it though.
+You can view the status of the messages being sent on the progress screen. MR.DM uses selenium to automate the process of sending messages. So you can use your computer while the messages are being sent. But please do not close the browser window that opens up. You can minimize it though.
 
 ![Progress Screen][progress-screenshot]
 
@@ -152,7 +152,7 @@ You can view the status of the messages being sent in the progress screen. MR.DM
 
 - [ ] Add Accounts that have posted with a specific hashtag. (In Progress)
 - [ ] Add Accounts that have interacted with certain hashtags. (In Progress)
-- [ ] Add an account from their instagram profile link.
+- [ ] Add an account from their Instagram profile link.
 - [ ] Add accounts that have interacted with a specific post.
 - [ ] Ability to send pictures and videos. (Need Contributors)
 - [ ] Cleaning up Documentation and Adding Sphinx Autodoc. ( Under Progress)
@@ -164,7 +164,7 @@ See the [open issues](https://github.com/oxlac/mr.dm/issues) for a full list of 
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what makes the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
