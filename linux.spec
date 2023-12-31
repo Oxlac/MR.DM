@@ -10,7 +10,7 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[
-        ("./backend/*.py", "backend"),a
+        ("./backend/*.py", "backend"),
         ("./ui/accountselectscreen/*.*", "ui/accountselectscreen"),
         ("./ui/assets/*.png", "ui/assets"),
         ("./ui/components/*.py", "ui/components"),
