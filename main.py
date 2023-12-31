@@ -3,9 +3,22 @@ from kivy.modules import inspector
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 
-
 from backend import DatabaseManager, Session
 from ui.welcomescreen import WelcomeScreen
+import sys
+import os
+
+
+# Define the path for the icon
+if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+    # Running as a bundled executable (PyInstaller)
+    ICON = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "ui/assets/icon.png")
+    )
+
+else:
+    # Inside a normal Python environment"
+    ICON = "ui/assets/icon.png"
 
 
 class MyApp(MDApp):
@@ -13,7 +26,8 @@ class MyApp(MDApp):
 
     :param MDApp: KivyMD App Class
     :type MDApp: class `MDApp` from `kivymd.app` module
-    """    
+    """
+
     backend_sess = Session()
     """
     Backend Session
@@ -24,7 +38,7 @@ class MyApp(MDApp):
     Title of the application
     """
 
-    icon = "ui/assets/icon.png"
+    icon = ICON
     """
     Icon of the application
     """
@@ -44,6 +58,13 @@ class MyApp(MDApp):
         # Create Database
         inspector.create_inspector(Window, sm)
         DatabaseManager().create_tables()
+        # dismiss the splash screen
+        try:
+            import pyi_splash
+
+            pyi_splash.close()
+        except Exception:
+            pass
         return sm
 
 

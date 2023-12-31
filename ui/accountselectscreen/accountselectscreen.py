@@ -25,6 +25,7 @@ from ui.components import (
     ManualDialog,
 )
 from ui.messagescreen import MessageScreen
+from kivy.clock import Clock
 
 
 class AccountSelectScreen(Screen):
@@ -66,7 +67,17 @@ class AccountSelectScreen(Screen):
     """
 
     def __init__(self, **kw):
-        Builder.load_file("ui/accountselectscreen/accountselectscreen.kv")
+        if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+            # Running as a bundled executable (PyInstaller)
+            Builder.load_file(
+                os.path.abspath(
+                    os.path.join(os.path.dirname(__file__), "accountselectscreen.kv")
+                )
+            )
+        else:
+            # Inside a normal Python environment
+            Builder.load_file("ui/accountselectscreen/accountselectscreen.kv")
+
         super().__init__(**kw)
         # add the MDDataTable to the layout
         self.ids.tablecontainer.add_widget(self.create_datatable(), 1)
@@ -104,10 +115,8 @@ class AccountSelectScreen(Screen):
         """
         self.selection = self.table.get_row_checks()
         if len(self.selection) > 0:
-            self.ids.next.disabled = False
             self.ids.Delete.disabled = False
         else:
-            self.ids.next.disabled = True
             self.ids.Delete.disabled = True
 
     def verify_delete(self):
@@ -129,11 +138,17 @@ class AccountSelectScreen(Screen):
         """
         Removes the selected accounts from the list
         """
+
+        def deselect_rows(*args):
+            self.table.table_data.select_all("normal")
+
         widget.parent.parent.parent.parent.dismiss()
         for selected in self.selection:
             for stuff in self.data:
                 if stuff[1] == selected[1]:
                     self.data.remove(stuff)
+        # remove the check from the table
+        Clock.schedule_once(deselect_rows)
         self._update_table()
 
     def open_filepicker(self):

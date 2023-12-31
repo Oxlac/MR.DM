@@ -101,6 +101,9 @@ MR.DM will take care of the rest. It will send the message to all the accounts y
 MR.DM is a desktop application. It is available for Windows, Linux, and Mac. You can download the latest executable version from [github releases](https://github.com/oxlac/mr.dm/releases). Or you can build it from the source
 with the following instructions.
 
+> [!WARNING]  
+> You must disable your antivirus before running the executable on windows. For more information, please read [this](https://github.com/pyinstaller/pyinstaller/issues?q=label%3Aantivirus-false-positives+is%3Aclosed)
+
 
 ### Installation
 
@@ -150,12 +153,12 @@ You can view the status of the messages being sent on the progress screen. MR.DM
 
 ## Roadmap
 
-- [ ] Add Accounts that have posted with a specific hashtag. (In Progress)
-- [ ] Add Accounts that have interacted with certain hashtags. (In Progress)
+- [ ] Add Accounts that have posted with a specific hashtag.
+- [ ] Add Accounts that have interacted with certain hashtags.
 - [ ] Add an account from their Instagram profile link.
 - [ ] Add accounts that have interacted with a specific post.
-- [ ] Ability to send pictures and videos. (Need Contributors)
-- [ ] Cleaning up Documentation and Adding Sphinx Autodoc. ( Under Progress)
+- [ ] Ability to send pictures and videos.
+- [ ] Cleaning up Documentation and Adding Sphinx Autodoc. ( Under Progress by admins)
 
 See the [open issues](https://github.com/oxlac/mr.dm/issues) for a full list of proposed features (and known issues). If you have any other ideas, please open an issue and let us know.
 
