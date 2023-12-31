@@ -1,5 +1,3 @@
-from typing import Self
-
 from instaloader import Instaloader, Profile
 from selenium import webdriver
 
@@ -16,7 +14,7 @@ class Session:
     driver: webdriver.Chrome = None
     username: str = None
 
-    def __new__(cls) -> Self:
+    def __new__(cls):
         if cls._instance is None:
             cls._instance = super(Session, cls).__new__(cls)
             cls._instance.loader = Instaloader()

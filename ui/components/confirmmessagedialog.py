@@ -57,6 +57,7 @@ class MessageConfirmDialog(MDDialog):
 
     def __init__(self, callback, **kwargs):
         self.callback = callback
+        self.auto_dismiss = False
         self.content_cls = MessageConfirmDialogContent()
         self.ok_button = MDRaisedButton(text="Send Messages")
         self.cancel_button = MDFlatButton(text="Cancel")

@@ -1,4 +1,5 @@
-from time import sleep
+import os
+import sys
 from typing import Any
 
 from kivy.clock import mainthread
@@ -8,7 +9,6 @@ from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 
 from ui.components import MessageMenu
 from ui.components.message_components import LinkMessage, PostMessage, TextMessage
@@ -39,7 +39,16 @@ class MessageScreen(Screen):
     """
 
     def __init__(self, data, *args: Any, **kwds: Any) -> Any:
-        Builder.load_file("ui/messagescreen/messagescreen.kv")
+        if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+            # Running as a bundled executable (PyInstaller)
+            Builder.load_file(
+                os.path.abspath(
+                    os.path.join(os.path.dirname(__file__), "messagescreen.kv")
+                )
+            )
+        else:
+            # Inside a normal Python environment
+            Builder.load_file("ui/messagescreen/messagescreen.kv")
         self.data = data
         return super().__init__(*args, **kwds)
 
@@ -109,6 +118,7 @@ class MessageScreen(Screen):
         )
         self.confirm_send_dialogue.open()
 
+    @mainthread
     def navigate_to_progress(self, *args):
         """
         Navigates to the progress screen
@@ -125,68 +135,7 @@ class MessageScreen(Screen):
                 }
             )
         self.manager.add_widget(
-            ProgressScreen(
-                name="progress_screen", messages=self.messages, accounts=self.data
-            )
+            ProgressScreen(name="progress", messages=self.messages, accounts=self.data)
         )
-        self.manager.current = "progress_screen"
-
-    def message_loop(self):
-        """
-        This is the main function that deals with sending messages
-        to each user in the list
-        """
-        for user in self.data:
-            # compose a new message for the user
-            self.find_element(
-                "/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/section/div/div/div/div[1]/div/div[1]/div/div[1]/div[2]/div/div"
-            ).click()
-            sleep(3)
-            actions = webdriver.ActionChains(self.session.driver)
-            actions.send_keys(user[1])
-            actions.perform()
-            sleep(2)
-            actions = webdriver.ActionChains(self.session.driver)
-            actions.send_keys(Keys.TAB)
-            actions.send_keys(Keys.ENTER)
-            actions.perform()
-            sleep(2)
-            actions = webdriver.ActionChains(self.session.driver)
-            actions.send_keys(Keys.TAB)
-            actions.send_keys(Keys.ENTER)
-            actions.perform()
-            sleep(3)
-            # start typing the message
-            actions = webdriver.ActionChains(self.session.driver)
-            actions.send_keys(self.reel_link)
-            actions.send_keys(Keys.ENTER)
-            actions.perform()
-            sleep(2)
-            # send the message
-            actions = webdriver.ActionChains(self.session.driver)
-            actions.send_keys(self.message)
-            actions.send_keys(Keys.ENTER)
-            actions.perform()
-            sleep(10)
-            # add the user to the processed list
-            self.processed_accounts.append(user[0])
-            # update the progress bar
-            self.update_progress()
-
-        # finish the process
-        self.finish()
-
-    @mainthread
-    def update_progress(self):
-        self.ids.progress.value = len(self.processed_accounts)
-        self.ids.progress_label.text = (
-            str(len(self.processed_accounts)) + "/" + str(len(self.data))
-        )
-
-    def finish(self):
-        self.ids.progress_label.text = "Finished"
-        self.ids.progress.label.bg_color = (0, 1, 0, 1)
-        # save the processed accounts to a file
-        with open("processed_accounts.txt", "w") as f:
-            for account in self.processed_accounts:
-                f.write(account + "\n")
+        self.manager.current = "progress"
+        self.manager.remove_widget(self)

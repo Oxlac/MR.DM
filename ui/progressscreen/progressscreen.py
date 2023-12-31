@@ -1,3 +1,5 @@
+import os
+import sys
 from threading import Thread
 from time import sleep
 
@@ -40,7 +42,16 @@ class ProgressScreen(Screen):
     """
 
     def __init__(self, messages, accounts, **kw):
-        Builder.load_file("ui/progressscreen/progressscreen.kv")
+        if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+            # Running as a bundled executable (PyInstaller)
+            Builder.load_file(
+                os.path.abspath(
+                    os.path.join(os.path.dirname(__file__), "progressscreen.kv")
+                )
+            )
+        else:
+            # Inside a normal Python environment
+            Builder.load_file("ui/progressscreen/progressscreen.kv")
         super().__init__(**kw)
         self.messages = messages
         self.accounts = accounts
@@ -62,7 +73,6 @@ class ProgressScreen(Screen):
         table = MDDataTable(
             size_hint=(1, 1),
             use_pagination=True,
-            rows_num=10,
             column_data=[
                 ("S.No", dp(30)),
                 ("Status", dp(30)),
@@ -70,6 +80,7 @@ class ProgressScreen(Screen):
                 ("Account Source", dp(40)),
             ],
             check=True,
+            rows_num=10,
         )
         self.table = table
         self.table.bind(on_check_press=self.edit_selection)
@@ -81,8 +92,9 @@ class ProgressScreen(Screen):
         Sets the initial data of the MDTable
         Adds a red clock icon to the status column
         """
+        temp = []
         for account in self.accounts:
-            self.table.add_row(
+            temp.append(
                 [
                     account[0],
                     ("clock-outline", [0.8, 0.3, 0.3, 1], "Pending"),
@@ -90,6 +102,7 @@ class ProgressScreen(Screen):
                     account[2],
                 ]
             )
+        self.table.row_data = temp
 
     def edit_selection(self, instance_table, current_row):
         """
@@ -233,9 +246,6 @@ class ProgressScreen(Screen):
         """
         count = 0
         for user in self.accounts:
-            # reset by reloading to the DM page
-            self.session.driver.get("https://www.instagram.com/direct/inbox/")
-            sleep(5)
             # set the account to processing
             self.set_account_to_processing(count)
             # open the user chat
@@ -243,7 +253,7 @@ class ProgressScreen(Screen):
             sleep(3)
             # Find the user search field and enter the keys
             self.find_element(SELECTORS["dm_type_username"]).send_keys(user[1])
-            # # We press teh bacl key and enter the last key again to fix a bug on insta that causes the account names to not show up
+            # # We press teh back key and enter the last key again to fix a bug on insta that causes the account names to not show up
             # self.find_element(SELECTORS["dm_type_username"]).send_keys(Keys.BACKSPACE)
             # sleep(2)
             # self.find_element(SELECTORS["dm_type_username"]).send_keys(user[1][-1])
@@ -258,14 +268,26 @@ class ProgressScreen(Screen):
             sleep(1)
             for message in self.messages:
                 # start typing the message
+                self.simulate_human(message["content"])
+                # send the message
                 actions = webdriver.ActionChains(self.session.driver)
-                actions.send_keys(message["content"])
                 actions.send_keys(Keys.ENTER)
                 actions.perform()
                 sleep(5)
             # set the account to completed
             self.set_account_to_completed(count)
             count += 1
+            sleep(30)
+
+    def simulate_human(self, text):
+        """
+        Simulates human typing
+        """
+        for char in text:
+            sleep(0.2)
+            actions = webdriver.ActionChains(self.session.driver)
+            actions.send_keys(char)
+            actions.perform()
 
     @mainthread
     def wrong_password(self):

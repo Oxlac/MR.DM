@@ -1,4 +1,6 @@
 import json
+import os
+import sys
 from functools import partial
 from threading import Thread
 
@@ -27,8 +29,16 @@ class WelcomeScreen(Screen):
     processing: BooleanProperty = BooleanProperty(False)
 
     def __init__(self, **kw):
-        # check if the file is already loaded
-        Builder.load_file("ui/welcomescreen/welcomescreen.kv")
+        if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+            # Running as a bundled executable (PyInstaller)
+            Builder.load_file(
+                os.path.abspath(
+                    os.path.join(os.path.dirname(__file__), "welcomescreen.kv")
+                )
+            )
+        else:
+            # Inside a normal Python environment
+            Builder.load_file("ui/welcomescreen/welcomescreen.kv")
         super().__init__(**kw)
 
     def on_pre_enter(self, *args):
