@@ -1,6 +1,5 @@
 import os
 import sys
-from time import sleep
 from typing import Any
 
 from kivy.clock import mainthread
@@ -10,7 +9,6 @@ from kivymd.toast import toast
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 
 from ui.components import MessageMenu
 from ui.components.message_components import LinkMessage, PostMessage, TextMessage
