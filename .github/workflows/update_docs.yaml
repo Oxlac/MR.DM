@@ -33,6 +33,7 @@ jobs:
 
       - name: Generate docs
         run: |
+          ls
           cd docs
           make html
           cd ../..
