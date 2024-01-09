@@ -55,7 +55,6 @@ jobs:
         with:
           repository: website
           commit_message: "Update docs"
-          commit_options: '--no-verify --signoff'
           commit_user_name: Oxlac Automation
           commit_author: Oxlac <actions@github.com>
 
