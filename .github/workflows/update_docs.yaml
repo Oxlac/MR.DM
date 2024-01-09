@@ -45,7 +45,7 @@ jobs:
 
       - name: Clear docs folder
         run: |
-        rm -rf website/public/docs/*
+          rm -rf website/public/docs/*
 
       - name: Copy New docs to website
         run: |
