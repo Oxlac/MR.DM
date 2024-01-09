@@ -3,7 +3,7 @@ name: Buid Windows and Linux Executables
 on:
   push:
     branches:
-      - main
+      - dummy
 
 jobs:
   Windows-Build:

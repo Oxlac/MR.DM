@@ -1,3 +1,7 @@
+"""
+_summary_: This file contains all the selectors for the backend.
+"""
+
 SELECTORS = {
     "login_username_field": "//input[@name='username']",
     "login_password_field": "//input[@name='password']",

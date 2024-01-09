@@ -17,7 +17,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          path: main
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -25,33 +27,35 @@ jobs:
           python-version: 3.11
       
       - name: Install dependencies
-        run: pip install -r requirements-dev.txt
+        run: |
+          cd main
+          pip install -r requirements-dev.txt
 
       - name: Generate docs
         run: |
-          cd docs
+          cd main/docs
           make html
-          cd ..
 
       - name: Clone Website Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: Oxlac/MR.DM-Website
           path: website
+          token: ${{ secrets.DOCS_TOKEN }}
 
       - name: Clear docs folder
-        run: rm -rf website/docs/*
+        run: |
+          rm -rf website/public/docs/*
 
       - name: Copy New docs to website
         run: |
-          cp -r docs/_build/html/* website/docs/
-          cd website
+          cp -r ./main/docs/_build/html/* ./website/public/docs/
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
+          repository: website
           commit_message: "Update docs"
-          commit_options: '--no-verify --signoff'
-          commit_user_name: Oxlac Automation
+          commit_user_name: Oxlac-Automation
           commit_author: Oxlac <actions@github.com>
 
