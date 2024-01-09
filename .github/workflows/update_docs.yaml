@@ -28,14 +28,14 @@ jobs:
       
       - name: Install dependencies
         run: |
-          ls 
+          cd main
           pip install -r requirements-dev.txt
 
       - name: Generate docs
         run: |
           cd docs
           make html
-          cd ..
+          cd ../..
 
       - name: Clone Website Repo
         uses: actions/checkout@v3
@@ -44,11 +44,13 @@ jobs:
           path: website
 
       - name: Clear docs folder
-        run: rm -rf ./public/docs/*
+        run: |
+        rm -rf website/public/docs/*
 
       - name: Copy New docs to website
         run: |
-          cp -r ../main/docs/_build/html/* ./public/docs/
+          cp -r ./main/docs/_build/html/* ./website/public/docs/
+          cd website
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
