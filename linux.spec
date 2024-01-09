@@ -6,18 +6,18 @@ block_cipher = None
 
 
 a = Analysis(
-    ['main.py'],
+    ['./src/main.py'],
     pathex=[],
     binaries=[],
     datas=[
-        ("./backend/*.py", "backend"),
-        ("./ui/accountselectscreen/*.*", "ui/accountselectscreen"),
-        ("./ui/assets/*.png", "ui/assets"),
-        ("./ui/components/*.py", "ui/components"),
-        ("./ui/components/message_components/*.py", "ui/components/message_components"),
-        ("./ui/messagescreen/*.*", "ui/messagescreen"),
-        ("./ui/welcomescreen/*.*", "ui/welcomescreen"),
-        ("./ui/progressscreen/*.*", "ui/progressscreen"), 
+        ("./src/backend/*.py", "backend"),
+        ("./src/ui/accountselectscreen/*.*", "ui/accountselectscreen"),
+        ("./src/ui/assets/*.png", "ui/assets"),
+        ("./src/ui/components/*.py", "ui/components"),
+        ("./src/ui/components/message_components/*.py", "ui/components/message_components"),
+        ("./src/ui/messagescreen/*.*", "ui/messagescreen"),
+        ("./src/ui/welcomescreen/*.*", "ui/welcomescreen"),
+        ("./src/ui/progressscreen/*.*", "ui/progressscreen"), 
         ],
     hiddenimports=[],
     hookspath=[kivymd_hooks_path],

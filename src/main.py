@@ -22,32 +22,27 @@ else:
 
 
 class MyApp(MDApp):
-    """The main App Class
+    """The main App Class"""
 
-    :param MDApp: KivyMD App Class
-    :type MDApp: class `MDApp` from `kivymd.app` module
-    """
-
-    backend_sess = Session()
+    backend_sess: Session = Session()
     """
     Backend Session
     """
 
-    title = "MR.DM"
+    title: str = "MR.DM"
     """
     Title of the application
     """
 
-    icon = ICON
+    icon: str = ICON
     """
-    Icon of the application
+    Path to the icon of the application
     """
 
-    def build(self):
+    def build(self) -> ScreenManager:
         """The build method of the application
 
         :return: ScreenManager of the application
-        :rtype: `ScreenManager` from `kivy.uix.screenmanager` module
         """
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Orange"

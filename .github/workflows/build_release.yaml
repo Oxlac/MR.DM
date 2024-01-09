@@ -27,28 +27,5 @@ jobs:
           repo_token: ${{ secrets.TOKEN }}
           prerelease: true
           files: |
-            dist/MR.DM.exe
-  
-  Linux-Build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.10.6
-      - name: Install dependencies
-        run: pip install -r requirements-dev.txt
-
-      - name: Build Linux Executable
-        run: pyinstaller linux.spec
-
-      - name: Generate Pre Release
-        uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: ${{ secrets.TOKEN }}
-          prerelease: true
-          files: |
-            dist/MR.DM
+            dist/MR.DM.exe 
           
