@@ -20,7 +20,7 @@ MR.DM will take care of the rest. It will send the message to all the accounts y
 
    
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Contents:
 
    gettingstarted
@@ -28,6 +28,7 @@ MR.DM will take care of the rest. It will send the message to all the accounts y
    usage
    contributing
    license
+   autoapi/index
 
 
 
