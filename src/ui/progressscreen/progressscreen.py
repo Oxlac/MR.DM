@@ -238,6 +238,10 @@ class ProgressScreen(Screen):
         if self.check_if_element_exists(SELECTORS["dm_notification_disable"]):
             # Click the turn on notifications button
             self.find_element(SELECTORS["dm_notification_disable"]).click()
+        # sleep for some time
+        sleep(2)
+        # navigate to the messages page
+        self.session.driver.get("https://www.instagram.com/direct/inbox/")
         self.start_message_loop()
 
     def start_message_loop(self, *args):
