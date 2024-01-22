@@ -25,6 +25,8 @@
     <br />
     <a href="https://www.youtube.com/watch?v=uluL4279G2A">View Demo</a>
     ·
+    <a href="https://mr-dm.oxlac.com/docs/docs.html">Read Docs</a>
+    .
     <a href="https://github.com/oxlac/mr.dm/issues">Report Bug</a>
     ·
     <a href="https://github.com/oxlac/mr.dm/issues">Request Feature</a>
@@ -111,6 +113,9 @@ with the following instructions.
 
 
 ### Installation
+
+> [!WARNING]
+> MR.DM only works on python versions 3.11 and above
 
 1. Clone the repo
    ```sh
